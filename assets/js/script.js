@@ -1,0 +1,1 @@
+var apiUrl = "https://api.openweathermap.org/data/3.0/onecall&appid=64c2d8fc8d96271e3ba05c28616d91c9"
