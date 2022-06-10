@@ -18,19 +18,19 @@
             <h2 class="fw-bold fs-1">Search for a City:</h2>
             <input id="search-input" type="text" placeholder="New York City" class="my-2 form-control-lg"/>
             <button id="search-button" type="submit" class="my-2 p-2 btn text-light fw-semibold fs-5">Search</button>
-            <div id="search-history" class="d-flex flex-column">
-                <div class="searched-city rounded">City 1</div>
-                <div class="searched-city rounded">City 2</div>
-                <div class="searched-city rounded">City 3</div>
-                <div class="searched-city rounded">City 4</div>
-                <div class="searched-city rounded">City 5</div>
-                <div class="searched-city rounded">City 6</div>
-                <div class="searched-city rounded">City 7</div>
-                <div class="searched-city rounded">City 9</div>
-            </div>
+            <ul id="search-history" class="d-flex flex-column">
+                <li class="searched-city rounded">City 1</li>
+                <li class="searched-city rounded">City 2</li>
+                <li class="searched-city rounded">City 3</li>
+                <li class="searched-city rounded">City 4</li>
+                <li class="searched-city rounded">City 5</li>
+                <li class="searched-city rounded">City 6</li>
+                <li class="searched-city rounded">City 7</li>
+                <li class="searched-city rounded">City 9</li>
+            </ul>
         </section>
-        <section class="forecast-container col-9 border border-primary border-3">
-            <div id="city-display" class="p-2 border border-dark border-3">
+        <section class="forecast-container col-9">
+            <section id="city-display" class="p-2 border border-dark border-3">
                 <h2 class="fw-bold fs-1">
                     <span id="current-city">New York City</span>
                     <span id="current-date">(Date)</span>
@@ -39,10 +39,42 @@
                 <p id="current-wind">Wind: <span>6.67</span> MPH</p> 
                 <p id="current-humidity">Humidity: <span>46</span> %</p> 
                 <p id="current-uv">UV Index: <span class="bg-success text-light rounded p-1 px-3">0.47</span></p>
-            </div>
-            <div id="five-day-forecast" class="pt-2 border border-danger border-3">
-                <h2 class="fw-bold">5-Day Forecast:</h2>
-            </div>
+            </section>
+            <section id="five-day-forecast" class="pt-2">
+                <h2 class="fw-bold py-2">5-Day Forecast:</h2>
+                <ul id="days" class="d-flex justify-content-between text-light p-0">
+                    <li class="day-container card">
+                        <h3 class="card-title">Day 1</h3>
+                        <p id="forecast-temp">Temp: <span>74.01</span>°F</p>
+                        <p id="forecast-wind">Wind: <span>6.67</span> MPH</p>
+                        <p id="forecast-humidity">Humidity: <span>46</span> %</p>
+                    </li>
+                    <li class="day-container card">
+                        <h3 class="card-title">Day 2</h3>
+                        <p id="forecast-temp">Temp: <span>74.01</span>°F</p>
+                        <p id="forecast-wind">Wind: <span>6.67</span> MPH</p>
+                        <p id="forecast-humidity">Humidity: <span>46</span> %</p>
+                    </li>
+                    <li class="day-container card">
+                        <h3 class="card-title">Day 3</h3>
+                        <p id="forecast-temp">Temp: <span>74.01</span>°F</p>
+                        <p id="forecast-wind">Wind: <span>6.67</span> MPH</p>
+                        <p id="forecast-humidity">Humidity: <span>46</span> %</p>
+                    </li>
+                    <li class="day-container card">
+                        <h3 class="card-title">Day 4</h3>
+                        <p id="forecast-temp">Temp: <span>74.01</span>°F</p>
+                        <p id="forecast-wind">Wind: <span>6.67</span> MPH</p>
+                        <p id="forecast-humidity">Humidity: <span>46</span> %</p>
+                    </li>
+                    <li class="day-container card">
+                        <h3 class="card-title">Day 5</h3>
+                        <p id="forecast-temp">Temp: <span>74.01</span>°F</p>
+                        <p id="forecast-wind">Wind: <span>6.67</span> MPH</p>
+                        <p id="forecast-humidity">Humidity: <span>46</span> %</p>
+                    </li>
+                </ul>
+            </section>
         </section>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>

@@ -23,6 +23,7 @@ header {
     border-top: 2px solid black;
     padding: 10px 0;
     margin-top: 10px;
+    list-style: none;
 }
 .searched-city {
     background-color: #AEAEAE;
@@ -47,4 +48,20 @@ header {
 #city-display p {
     font-size: 1.25rem;
     margin: 1.5rem 0;
+}
+
+.day-container {
+    background-color: #2D3E50;
+    width: 17%;
+    height: 290px;
+    padding: 10px;
+}
+
+.day-container h3 {
+    font-weight: bold;
+}
+
+.day-container p {
+    font-size: 1.25rem;
+    margin: 1rem 0;
 }
