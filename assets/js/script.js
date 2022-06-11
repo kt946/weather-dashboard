@@ -37,6 +37,7 @@ var getCityLocation = function(city) {
                     getCityWeather(y, x);
                 })
             } else {
+                // if user input a city that does not exist
                 alert("Error: City does not exist");
             }
         })
@@ -45,6 +46,22 @@ var getCityLocation = function(city) {
         });
 };
 
-var searchTerm = "London";
+/*var getSearchTerm = function() {
+    var searchTerm = $("#search-input").val();
+};*/
 
-getCityLocation(searchTerm);
+// When search button is clicked, retrieve search term
+$("#search-button").on("click", function() {
+    //console.log("Search Button Clicked!");
+    // set variable to search input value
+    var searchTerm = $("#search-input").val();
+    console.log(searchTerm);
+
+    // if input is not blank, pass search term to function to get city's latitude and longitude
+    if (searchTerm) {
+        getCityLocation(searchTerm);
+    }
+
+    // clear search input
+    $("#search-input").val("");
+})
