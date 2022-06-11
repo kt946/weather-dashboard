@@ -36,32 +36,26 @@ var setWeatherDisplay = function(data) {
 };
 
 var setForcastDisplay = function(data) {
-    var dailyData = data.daily;
-    var card = $(".day-container:eq(0)");
+    // loop through each container in 5-day forecast
+    for (var i = 0; i < 5; i++) {
+        // set variable for each array in daily data
+        var dailyData = data.daily[i+1];
+        // select card by index
+        var card = $(".day-container:eq(" + i + ")");
 
-    // set date
-    var dateData = dailyData[1].dt;
-    var forecastDate = moment.unix(dateData).format("(M/D/YYYY)");
-    console.log(forecastDate);
-    card.find("h3").text(forecastDate);
+        // set date
+        card.find("h3").text(moment.unix(dailyData.dt).format("(M/D/YYYY)"));
 
-    // set icon for weather condition
-    var weatherIcon = dailyData[1].weather[0].icon;
-    console.log(weatherIcon);
-    card.find("img").attr("src", "https://openweathermap.org/img/wn/" + weatherIcon + ".png");
+        // set icon for weather condition
+        card.find("img").attr("src", "https://openweathermap.org/img/wn/" + dailyData.weather[0].icon + ".png");
 
-    // set conditions
-    var forecastTemp = dailyData[1].temp.day;
-    console.log(forecastTemp);
-    card.find("#forecast-temp span").text(forecastTemp);
+        // set conditions
+        card.find("#forecast-temp span").text(dailyData.temp.day + "°F");
 
-    var forecastWind = dailyData[1].wind_speed;
-    console.log(forecastWind);
-    card.find("#forecast-wind span").text(forecastWind);
+        card.find("#forecast-wind span").text(dailyData.wind_speed + " MPH");
 
-    var forecastHumidity = dailyData[1].humidity;
-    console.log(forecastHumidity);
-    card.find("#forecast-humidity span").text(forecastHumidity);
+        card.find("#forecast-humidity span").text(dailyData.humidity + " %");
+    }
 };
 
 // pass coordinates from 'getCityLocation()' into one call api
