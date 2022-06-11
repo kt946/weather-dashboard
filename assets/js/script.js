@@ -102,6 +102,8 @@ var getCityLocation = function(city) {
                     // set city display name to current city
                     $("#current-city").text(data.name);
 
+                    saveHistory(data.name);
+
                     // set date display to current date
                     var dateData = data.dt;
                     var date = moment.unix(dateData).format("(M/D/YYYY)");
@@ -118,12 +120,23 @@ var getCityLocation = function(city) {
         });
 };
 
+var saveHistory = function(city){
+    $("#search-history").append(
+        '<li class="searched-city rounded">' + city + '</li>'
+    );
+
+    searchHistory.push(city);
+    console.log(searchHistory);
+
+    localStorage.setItem("city", JSON.stringify(searchHistory));
+};
+
 // When search button is clicked, retrieve search term
 $("#search-button").on("click", function() {
     //console.log("Search Button Clicked!");
     // set variable to search input value
     var searchTerm = $("#search-input").val();
-    console.log(searchTerm);
+    //console.log(searchTerm);
 
     // if input is not blank, pass search term to function to get city's latitude and longitude
     if (searchTerm) {
