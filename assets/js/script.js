@@ -128,6 +128,26 @@ var displayHistory = function(city) {
     );
 };
 
+// function to load history from local storage
+var loadHistory = function() {
+    // get search history from local storage
+    searchHistory = JSON.parse(localStorage.getItem("Search History"));
+
+    //if nothing in local storage, create new array
+    if (!searchHistory) {
+        searchHistory = [];
+    }
+
+    console.log(searchHistory);
+
+    // create search history list from array
+    for (var i = 0; i < searchHistory.length; i++) {
+        savedCity = searchHistory[i];
+        displayHistory(savedCity);
+    }
+}
+
+// function to save history
 var saveHistory = function(city){
     // if no history exists, add first list item
     if (searchHistory === undefined || searchHistory.length === 0) {
@@ -167,3 +187,6 @@ $("#search-button").on("click", function() {
     // clear search input
     $("#search-input").val("");
 });
+
+// load search history from local storage first
+loadHistory();
