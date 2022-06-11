@@ -172,7 +172,15 @@ var saveHistory = function(city){
     localStorage.setItem("Search History", JSON.stringify(searchHistory));
 };
 
-// When search button is clicked, get search term
+// when search history item is clicked, get that city's weather
+$("#search-history").on("click", "li", function(event ) {
+    event.preventDefault();
+
+    searchHistoryItem = $(this).text();
+    getCityLocation(searchHistoryItem);
+});
+
+// when search button is clicked, get search term
 $("#search-button").on("click", function() {
     //console.log("Search Button Clicked!");
     // set variable to search input value
