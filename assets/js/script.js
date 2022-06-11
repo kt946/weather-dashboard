@@ -1,6 +1,7 @@
 // unique api key
 var apiKey = "&appid=64c2d8fc8d96271e3ba05c28616d91c9";
 var searchHistory = [];
+var date = "";
 
 // pass coordinates from 'getCityLocation()' into one call api
 var getCityWeather = function(lat, lon) {
@@ -13,7 +14,7 @@ var getCityWeather = function(lat, lon) {
             // request successful
             if (response.ok) {
                 response.json().then(function(data) {
-                    console.log(data);
+                    //console.log(data);
                 })
             }
         })
@@ -28,13 +29,22 @@ var getCityLocation = function(city) {
             // request successful
             if (response.ok) {
                 response.json().then(function(data) {
-                    //console.log(data);
+                    console.log(data);
                     // get coordinates then pass into weather function
                     var y = data.coord.lat;
                     var x = data.coord.lon;
                     console.log(y);
                     console.log(x);
                     getCityWeather(y, x);
+
+                    // set city display name to current city
+                    $("#current-city").text(data.name);
+
+                    // set date display to current date
+                    date = data.dt;
+                    var day = moment.unix(date).format("(D/M/YYYY)");
+                    //console.log(day);
+                    $("#current-date").text(day);
                 })
             } else {
                 // if user input a city that does not exist
