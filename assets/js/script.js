@@ -10,14 +10,14 @@ var setWeatherDisplay = function(data) {
     $("#current-condition").attr("src", "https://openweathermap.org/img/wn/" + currentData.weather[0].icon + ".png");
 
     // set conditions
-    $("#current-temp").find("span").text(currentData.temp + "°F");
+    $("#current-temp span").text(currentData.temp + "°F");
 
-    $("#current-wind").find("span").text(currentData.wind_speed + " MPH");
+    $("#current-wind span").text(currentData.wind_speed + " MPH");
 
-    $("#current-humidity").find("span").text(currentData.humidity + " %");
+    $("#current-humidity span").text(currentData.humidity + " %");
 
     var currentUv = currentData.uvi;
-    var uvIndex = $("#current-uv").find("span");
+    var uvIndex = $("#current-uv span");
     uvIndex.text(currentUv);
 
     // remove uv index color classes
@@ -81,7 +81,7 @@ var getCityWeather = function(lat, lon) {
         })
 };
 
-// first get searched city's latitude and longitude fron weather api
+// get searched city's latitude and longitude fron weather api
 var getCityLocation = function(city) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey;
     fetch(apiUrl)
@@ -102,6 +102,7 @@ var getCityLocation = function(city) {
                     // set city display name to current city
                     $("#current-city").text(data.name);
 
+                    // pass city name to save history function
                     saveHistory(data.name);
 
                     // set date display to current date
@@ -120,25 +121,45 @@ var getCityLocation = function(city) {
         });
 };
 
-var saveHistory = function(city){
+// function to display history to weather dashboard
+var displayHistory = function(city) {
     $("#search-history").append(
         '<li class="searched-city rounded">' + city + '</li>'
     );
-
-    searchHistory.push(city);
-    console.log(searchHistory);
-
-    localStorage.setItem("city", JSON.stringify(searchHistory));
 };
 
-// When search button is clicked, retrieve search term
+var saveHistory = function(city){
+    // if no history exists, add first list item
+    if (searchHistory === undefined || searchHistory.length === 0) {
+        searchHistory.push(city);
+        displayHistory(city);
+        console.log("First Item In Search History");
+    }
+    else {
+        // if search history does not have city already, add to list
+        if (!searchHistory.includes(city)) {
+            console.log("No Duplicate Found. Adding to Search History.");
+            searchHistory.push(city);
+            displayHistory(city);
+        } else {
+            console.log("City Already Exists in Search History");
+        }
+    }
+
+    console.log(searchHistory);
+
+    // save array to local storage
+    localStorage.setItem("Search History", JSON.stringify(searchHistory));
+};
+
+// When search button is clicked, get search term
 $("#search-button").on("click", function() {
     //console.log("Search Button Clicked!");
     // set variable to search input value
     var searchTerm = $("#search-input").val();
     //console.log(searchTerm);
 
-    // if input is not blank, pass search term to function to get city's latitude and longitude
+    // if input is not blank, pass search term to function to get city's location
     if (searchTerm) {
         getCityLocation(searchTerm);
     }
