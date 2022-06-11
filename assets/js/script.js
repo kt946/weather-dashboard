@@ -11,16 +11,31 @@ var setWeatherDisplay = function(data) {
 
     // set conditions
     var currentTemp = data.current.temp;
-    $("#current-temp").find("span").text(currentTemp);
+    $("#current-temp").find("span").text(currentTemp + "°F");
 
     var currentWind = data.current.wind_speed;
-    $("#current-wind").find("span").text(currentWind);
+    $("#current-wind").find("span").text(currentWind + " MPH");
 
     var currentHumidity = data.current.humidity;
-    $("#current-humidity").find("span").text(currentHumidity);
+    $("#current-humidity").find("span").text(currentHumidity + " %");
 
     var currentUv = data.current.uvi;
-    $("#current-uv").find("span").text(currentUv);
+    var uvIndex = $("#current-uv").find("span");
+    uvIndex.text(currentUv);
+
+    // remove uv index color classes
+    uvIndex.removeClass("text-bg-success text-bg-warning text-bg-danger");
+
+    // set uv index color classes
+    if (currentUv < 3) {
+        uvIndex.addClass("text-bg-success");
+    } 
+    else if (currentUv > 3 && currentUv < 7) {
+        uvIndex.addClass("text-bg-warning");
+    } 
+    else if (currentUv > 7) {
+        uvIndex.addClass("text-bg-danger");
+    }
 };
 
 // pass coordinates from 'getCityLocation()' into one call api
@@ -66,7 +81,7 @@ var getCityLocation = function(city) {
 
                     // set date display to current date
                     date = data.dt;
-                    var day = moment.unix(date).format("(D/M/YYYY)");
+                    var day = moment.unix(date).format("(M/D/YYYY)");
                     //console.log(day);
                     $("#current-date").text(day);
                 })
@@ -79,10 +94,6 @@ var getCityLocation = function(city) {
             alert("Unable to connect to OpenWeather");
         });
 };
-
-/*var getSearchTerm = function() {
-    var searchTerm = $("#search-input").val();
-};*/
 
 // When search button is clicked, retrieve search term
 $("#search-button").on("click", function() {
@@ -98,4 +109,4 @@ $("#search-button").on("click", function() {
 
     // clear search input
     $("#search-input").val("");
-})
+});
