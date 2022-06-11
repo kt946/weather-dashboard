@@ -3,10 +3,30 @@ var apiKey = "&appid=64c2d8fc8d96271e3ba05c28616d91c9";
 var searchHistory = [];
 var date = "";
 
+// function to display current city weather conditions from data
+var setWeatherDisplay = function(data) {
+    // set icon for weather condition
+    var currentCondition = data.current.weather[0].icon;
+    $("#current-condition").attr("src", "https://openweathermap.org/img/wn/" + currentCondition + ".png")
+
+    // set conditions
+    var currentTemp = data.current.temp;
+    $("#current-temp").find("span").text(currentTemp);
+
+    var currentWind = data.current.wind_speed;
+    $("#current-wind").find("span").text(currentWind);
+
+    var currentHumidity = data.current.humidity;
+    $("#current-humidity").find("span").text(currentHumidity);
+
+    var currentUv = data.current.uvi;
+    $("#current-uv").find("span").text(currentUv);
+};
+
 // pass coordinates from 'getCityLocation()' into one call api
 var getCityWeather = function(lat, lon) {
     // formate the OpenWeather api url
-    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?&lat=" + lat + "&lon=" + lon + "&exclude=minutely,hourly" + apiKey;
+    var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?&lat=" + lat + "&lon=" + lon + "&units=imperial&exclude=minutely,hourly" + apiKey;
     // make a request to the url
     fetch(apiUrl)
         .then(function(response) {
@@ -15,6 +35,9 @@ var getCityWeather = function(lat, lon) {
             if (response.ok) {
                 response.json().then(function(data) {
                     //console.log(data);
+
+                    // pass data to display functions
+                    setWeatherDisplay(data);
                 })
             }
         })
@@ -29,12 +52,13 @@ var getCityLocation = function(city) {
             // request successful
             if (response.ok) {
                 response.json().then(function(data) {
-                    console.log(data);
+                    //console.log(data);
+
                     // get coordinates then pass into weather function
                     var y = data.coord.lat;
                     var x = data.coord.lon;
-                    console.log(y);
-                    console.log(x);
+                    //console.log(y);
+                    //console.log(x);
                     getCityWeather(y, x);
 
                     // set city display name to current city
