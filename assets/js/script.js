@@ -1,5 +1,5 @@
 // unique api key
-var apiKey = "&appid=64c2d8fc8d96271e3ba05c28616d91c9";
+var apiKey = "&appid=b179b0ec8a494dd3814af7d275d79d75";
 var searchHistory = [];
 var currentCity = "";
 var currentDate = "";
@@ -43,20 +43,20 @@ var setWeatherDisplay = function(data) {
     uvIndex.text(currentUv);
 
     // remove uv index color classes
-    uvIndex.removeClass("text-bg-success text-bg-warning text-bg-high text-bg-danger text-bg-extreme");
+    uvIndex.removeClass("text-bg-low text-bg-moderate text-bg-high text-bg-very-high text-bg-extreme");
 
     // set uv index color classes
     if (currentUv < 3) {
-        uvIndex.addClass("text-bg-success");
+        uvIndex.addClass("text-bg-low");
     } 
     else if (currentUv > 3 && currentUv < 6) {
-        uvIndex.addClass("text-bg-warning");
+        uvIndex.addClass("text-bg-moderate");
     }
     else if (currentUv > 6 && currentUv < 8) {
         uvIndex.addClass("text-bg-high");
     }  
     else if (currentUv > 8 && currentUv < 11) {
-        uvIndex.addClass("text-bg-danger");
+        uvIndex.addClass("text-bg-very-high");
     }
     else if (currentUv > 11) {
         uvIndex.addClass("text-bg-extreme");

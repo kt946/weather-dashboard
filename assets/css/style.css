@@ -1,5 +1,12 @@
 body {
     background: url("../images/clouds.jpg") no-repeat fixed center;
+    font-family: "Kdam Thmor Pro", sans-serif;
+}
+
+h1 {
+    font-family: "Audiowide", sans-serif;
+    font-size: 3rem;
+    margin: 0;
 }
 
 header {
@@ -8,7 +15,7 @@ header {
 }
 
 p {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
 }
 
 #content {
@@ -24,7 +31,6 @@ p {
     padding: 10px 0;
     margin-top: 10px;
 }
-
 
 #search-button {
     background: linear-gradient(#2a89ee, #1e62aa);
@@ -64,14 +70,15 @@ p {
 }
 
 .forecast-container {
-    padding: 10px 25px;
+    padding: 0 25px 10px 25px;
 }
 
 #city-display {
     height: 300px;
-    background: linear-gradient(#379ae2, #20094B);
+    background: linear-gradient(#379ae2, #09134b);
     border: 4px solid #ffc500;
     border-radius: 10px;
+    text-shadow: 1px 1px 5px rgb(0, 0, 0, 0.8);
 }
 
 #five-day-forecast {
@@ -80,12 +87,30 @@ p {
 
 #city-display p {
     margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.text-bg-low {
+    color:white;
+    background-color: #2eb82e;
+}
+
+.text-bg-moderate {
+    color:black;
+    background-color: #ffd900;
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
 }
 
 .text-bg-high {
     color:black;
-    background-color: orange;
+    background-color: #ff9100;
+    text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
 }
+
+.text-bg-very-high {
+    color:white;
+    background-color: #cc2900;
+};
 
 .text-bg-extreme {
     color: white;
@@ -98,16 +123,27 @@ img {
 }
 
 .day-container {
-    background: linear-gradient(#3462BB, #20094B);
+    background: linear-gradient(#379ae2, #09134b);
     border: 4px solid #ffc500;
     border-radius: 10px;
     width: 17%;
     height: 290px;
     padding: 10px;
+    text-shadow: 1px 1px 5px rgb(0, 0, 0, 0.8);
 }
 
 .day-container h3 {
-    font-weight: bold;
+    font-weight: 700;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.day-container img {
+    margin: 0 auto;
+}
+
+.day-container p {
+    margin: 0.7rem 0;
 }
 
 .day-container p {
