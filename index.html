@@ -18,59 +18,21 @@
             <h2 class="fw-bold fs-1">Search for a City:</h2>
             <input id="search-input" type="text" placeholder="New York" class="my-2 form-control-lg"/>
             <button id="search-button" type="submit" class="my-2 p-2 btn text-light fw-semibold fs-5">Search</button>
-            <ul id="search-history" class="d-flex flex-column">
+            <ul id="search-history" class="d-flex flex-column text-light">
             </ul>
         </section>
         <section class="forecast-container col-9">
-            <section id="city-display" class="p-2 border border-dark border-3">
-                <div class="d-flex align-items-center gap-2">
-                    <h2 id="current-city" class="fw-bold fs-1">Current City</h2>
-                    <h2 id="current-date" class="fw-bold fs-1">(Date)</h2>
-                    <img id="current-condition" src="https://openweathermap.org/img/wn/01d.png"/>
-                </div>   
-                <p id="current-temp">Temp: <span></span></p> 
-                <p id="current-wind">Wind: <span></span></p> 
-                <p id="current-humidity">Humidity: <span></span></p> 
-                <p id="current-uv">UV Index: <span class="rounded p-1 px-3"></span></p>
+            <section id="current-display">
+                <div id="city-display" class="text-light p-2"></div>
             </section>
             <section id="five-day-forecast" class="pt-2">
                 <h2 class="fw-bold py-2">5-Day Forecast:</h2>
                 <ul id="days" class="d-flex justify-content-between text-light p-0">
-                    <li class="day-container card">
-                        <h3 class="card-title">Day 1</h3>
-                        <img src="https://openweathermap.org/img/wn/01d.png">
-                        <p id="forecast-temp">Temp: <span></span></p>
-                        <p id="forecast-wind">Wind: <span></span></p>
-                        <p id="forecast-humidity">Humidity: <span></span></p>
-                    </li>
-                    <li class="day-container card">
-                        <h3 class="card-title">Day 2</h3>
-                        <img src="https://openweathermap.org/img/wn/01d.png">
-                        <p id="forecast-temp">Temp: <span></span></p>
-                        <p id="forecast-wind">Wind: <span></span></p>
-                        <p id="forecast-humidity">Humidity: <span></span></p>
-                    </li>
-                    <li class="day-container card">
-                        <h3 class="card-title">Day 3</h3>
-                        <img src="https://openweathermap.org/img/wn/01d.png">
-                        <p id="forecast-temp">Temp: <span></span></p>
-                        <p id="forecast-wind">Wind: <span></span></p>
-                        <p id="forecast-humidity">Humidity: <span></span></p>
-                    </li>
-                    <li class="day-container card">
-                        <h3 class="card-title">Day 4</h3>
-                        <img src="https://openweathermap.org/img/wn/01d.png">
-                        <p id="forecast-temp">Temp: <span></span></p>
-                        <p id="forecast-wind">Wind: <span></span></p>
-                        <p id="forecast-humidity">Humidity: <span></span></p>
-                    </li>
-                    <li class="day-container card">
-                        <h3 class="card-title">Day 5</h3>
-                        <img src="https://openweathermap.org/img/wn/01d.png">
-                        <p id="forecast-temp">Temp: <span></span></p>
-                        <p id="forecast-wind">Wind: <span></span></p>
-                        <p id="forecast-humidity">Humidity: <span></span></p>
-                    </li>
+                    <li class="day-container card"></li>
+                    <li class="day-container card"></li>
+                    <li class="day-container card"></li>
+                    <li class="day-container card"></li>
+                    <li class="day-container card"></li>
                 </ul>
             </section>
         </section>

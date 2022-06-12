@@ -1,6 +1,14 @@
+body {
+    background-image: url("../images/clouds.jpg");
+}
+
 header {
     background-image: linear-gradient(to right, #3462BB , #20094B);
     padding: 10px 0;
+}
+
+p {
+    font-size: 1.4rem;
 }
 
 #content {
@@ -12,7 +20,11 @@ header {
 }
 
 #search-button {
-    background-color: #5098E6;
+    background: #5098E6;
+}
+
+#search-button:hover {
+    background: #4481c4;
 }
 
 #search-input {
@@ -25,12 +37,17 @@ header {
     margin-top: 10px;
     list-style: none;
 }
+
 .searched-city {
-    background-color: #AEAEAE;
+    background: linear-gradient(#2D3E50, black);
     text-align: center;
     padding: 0.5rem;
     margin: 10px 0;
     font-size: 1.3rem;
+}
+
+.searched-city:hover {
+    background: linear-gradient(#5b98d8, black);
 }
 
 .forecast-container {
@@ -39,6 +56,9 @@ header {
 
 #city-display {
     height: 300px;
+    background: linear-gradient(#379ae2, #20094B);
+    border: 4px solid #ffc500;
+    border-radius: 10px;
 }
 
 #five-day-forecast {
@@ -55,7 +75,9 @@ img {
 }
 
 .day-container {
-    background-color: #2D3E50;
+    background: linear-gradient(#3462BB, #20094B);
+    border: 4px solid #ffc500;
+    border-radius: 10px;
     width: 17%;
     height: 290px;
     padding: 10px;
@@ -67,8 +89,4 @@ img {
 
 .day-container p {
     margin: 0.7rem 0;
-}
-
-p {
-    font-size: 1.4rem;
 }

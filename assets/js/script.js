@@ -1,10 +1,32 @@
 // unique api key
 var apiKey = "&appid=64c2d8fc8d96271e3ba05c28616d91c9";
 var searchHistory = [];
+var currentCity = "";
+var currentDate = "";
 
-// function to display current city weather conditions from data
+// function to display current city weather
 var setWeatherDisplay = function(data) {
     var currentData = data.current;
+    // empty display of current values
+    $("#city-display").empty();
+
+    // set up display
+    $("#city-display").append(
+        "<div class='d-flex align-items-center gap-2'>"+
+        "<h2 id='current-city' class='fw-bold fs-1'></h2>"+
+        "<h2 id='current-date' class='fw-bold fs-1'></h2>"+
+        "<img id='current-condition' src=''/></div>"+
+        "<p id='current-temp'>Temp: <span></span></p>"+
+        "<p id='current-wind'>Wind: <span></span></p>"+
+        "<p id='current-humidity'>Humidity: <span></span></p>"+
+        "<p id='current-uv'>UV Index: <span class='rounded p-1 px-3'></span></p>"
+    );
+
+    // set city display name to current city
+    $("#current-city").text(currentCity);
+
+    // set date display to current date
+    $("#current-date").text(currentDate);
 
     // set icon for weather condition
     $("#current-condition").attr("src", "https://openweathermap.org/img/wn/" + currentData.weather[0].icon + ".png");
@@ -35,7 +57,20 @@ var setWeatherDisplay = function(data) {
     }
 };
 
+// function to display current city's 5-day forecast
 var setForcastDisplay = function(data) {
+    // empty cards of current values
+    $(".day-container").empty();
+    
+    // create cards
+    $(".day-container").append(
+        "<h3 class='card-title'>Day 1</h3>"+
+        "<img src=''>"+
+        "<p id='forecast-temp'>Temp: <span></span></p>"+
+        "<p id='forecast-wind'>Wind: <span></span></p>"+
+        "<p id='forecast-humidity'>Humidity: <span></span></p>"
+    );
+
     // loop through each container in 5-day forecast
     for (var i = 0; i < 5; i++) {
         // set variable for each array in daily data
@@ -58,21 +93,17 @@ var setForcastDisplay = function(data) {
     }
 };
 
-// pass coordinates from 'getCityLocation()' into one call api
+// function to get city's weather from  one call api
 var getCityWeather = function(lat, lon) {
     // formate the OpenWeather api url
     var apiUrl = "https://api.openweathermap.org/data/2.5/onecall?&lat=" + lat + "&lon=" + lon + "&units=imperial&exclude=minutely,hourly" + apiKey;
-    //console.log(apiUrl);
     
     // make a request to the url
     fetch(apiUrl)
         .then(function(response) {
-            //console.log(response);
             // request successful
             if (response.ok) {
                 response.json().then(function(data) {
-                    //console.log(data);
-
                     // pass data to display functions
                     setWeatherDisplay(data);
                     setForcastDisplay(data);
@@ -81,35 +112,26 @@ var getCityWeather = function(lat, lon) {
         })
 };
 
-// get searched city's latitude and longitude fron weather api
+// function to get searched city's latitude and longitude fron weather api
 var getCityLocation = function(city) {
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=" + city + apiKey;
     fetch(apiUrl)
         .then(function(response) {
-            //console.log(response);
             // request successful
             if (response.ok) {
                 response.json().then(function(data) {
-                    //console.log(data);
+                    // set up global variables for later use
+                    currentCity = data.name;
+                    var dateData = data.dt;
+                    currentDate = moment.unix(dateData).format("(M/D/YYYY)");
 
                     // get coordinates then pass into weather function
                     var y = data.coord.lat;
                     var x = data.coord.lon;
-                    //console.log(y);
-                    //console.log(x);
                     getCityWeather(y, x);
-
-                    // set city display name to current city
-                    $("#current-city").text(data.name);
-
+                    
                     // pass city name to save history function
                     saveHistory(data.name);
-
-                    // set date display to current date
-                    var dateData = data.dt;
-                    var date = moment.unix(dateData).format("(M/D/YYYY)");
-                    //console.log(date);
-                    $("#current-date").text(date);
                 })
             } else {
                 // if user input a city that does not exist
@@ -124,7 +146,7 @@ var getCityLocation = function(city) {
 // function to display history to weather dashboard
 var displayHistory = function(city) {
     $("#search-history").append(
-        '<li class="searched-city rounded">' + city + '</li>'
+        '<li class="searched-city btn text-light">' + city + '</li>'
     );
 };
 
@@ -137,8 +159,6 @@ var loadHistory = function() {
     if (!searchHistory) {
         searchHistory = [];
     }
-
-    console.log(searchHistory);
 
     // create search history list from array
     for (var i = 0; i < searchHistory.length; i++) {
@@ -153,20 +173,14 @@ var saveHistory = function(city){
     if (searchHistory === undefined || searchHistory.length === 0) {
         searchHistory.push(city);
         displayHistory(city);
-        console.log("First Item In Search History");
     }
     else {
         // if search history does not have city already, add to list
         if (!searchHistory.includes(city)) {
-            console.log("No Duplicate Found. Adding to Search History.");
             searchHistory.push(city);
             displayHistory(city);
-        } else {
-            console.log("City Already Exists in Search History");
         }
     }
-
-    console.log(searchHistory);
 
     // save array to local storage
     localStorage.setItem("Search History", JSON.stringify(searchHistory));
@@ -182,10 +196,8 @@ $("#search-history").on("click", "li", function(event ) {
 
 // when search button is clicked, get search term
 $("#search-button").on("click", function() {
-    //console.log("Search Button Clicked!");
     // set variable to search input value
     var searchTerm = $("#search-input").val();
-    //console.log(searchTerm);
 
     // if input is not blank, pass search term to function to get city's location
     if (searchTerm) {
