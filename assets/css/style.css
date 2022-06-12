@@ -1,5 +1,5 @@
 body {
-    background-image: url("../images/clouds.jpg");
+    background: url("../images/clouds.jpg") no-repeat fixed center;
 }
 
 header {
@@ -19,12 +19,19 @@ p {
     padding: 0;
 }
 
+.search-container {
+    border-top: 2px solid black;
+    padding: 10px 0;
+    margin-top: 10px;
+}
+
+
 #search-button {
-    background: #5098E6;
+    background: linear-gradient(#2a89ee, #1e62aa);
 }
 
 #search-button:hover {
-    background: #4481c4;
+    background: linear-gradient(#1f8bff, #2a89ee);
 }
 
 #search-input {
@@ -32,14 +39,20 @@ p {
 }
 
 #search-history {
-    border-top: 2px solid black;
-    padding: 10px 0;
-    margin-top: 10px;
+    padding: 0;
     list-style: none;
 }
 
+#delete-button {
+    background: linear-gradient(#cf0829, #96041d);
+}
+
+#delete-button:hover {
+    background: linear-gradient(#fa0931, #cf0829);
+}
+
 .searched-city {
-    background: linear-gradient(#2D3E50, black);
+    background: linear-gradient(#425e7c, black);
     text-align: center;
     padding: 0.5rem;
     margin: 10px 0;
@@ -47,7 +60,7 @@ p {
 }
 
 .searched-city:hover {
-    background: linear-gradient(#5b98d8, black);
+    background: linear-gradient(#5b98d8, #425e7c);
 }
 
 .forecast-container {
@@ -69,9 +82,19 @@ p {
     margin: 1rem 0;
 }
 
+.text-bg-high {
+    color:black;
+    background-color: orange;
+}
+
+.text-bg-extreme {
+    color: white;
+    background-color: #712cf9;
+}
+
 img {
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
 }
 
 .day-container {

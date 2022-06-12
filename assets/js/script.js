@@ -43,17 +43,23 @@ var setWeatherDisplay = function(data) {
     uvIndex.text(currentUv);
 
     // remove uv index color classes
-    uvIndex.removeClass("text-bg-success text-bg-warning text-bg-danger");
+    uvIndex.removeClass("text-bg-success text-bg-warning text-bg-high text-bg-danger text-bg-extreme");
 
     // set uv index color classes
     if (currentUv < 3) {
         uvIndex.addClass("text-bg-success");
     } 
-    else if (currentUv > 3 && currentUv < 8) {
+    else if (currentUv > 3 && currentUv < 6) {
         uvIndex.addClass("text-bg-warning");
-    } 
-    else if (currentUv > 8) {
+    }
+    else if (currentUv > 6 && currentUv < 8) {
+        uvIndex.addClass("text-bg-high");
+    }  
+    else if (currentUv > 8 && currentUv < 11) {
         uvIndex.addClass("text-bg-danger");
+    }
+    else if (currentUv > 11) {
+        uvIndex.addClass("text-bg-extreme");
     }
 };
 
@@ -65,7 +71,7 @@ var setForcastDisplay = function(data) {
     // create cards
     $(".day-container").append(
         "<h3 class='card-title'>Day 1</h3>"+
-        "<img src=''>"+
+        "<img class='src=''>"+
         "<p id='forecast-temp'>Temp: <span></span></p>"+
         "<p id='forecast-wind'>Wind: <span></span></p>"+
         "<p id='forecast-humidity'>Humidity: <span></span></p>"
@@ -206,6 +212,13 @@ $("#search-button").on("click", function() {
 
     // clear search input
     $("#search-input").val("");
+});
+
+// when delete button is clicked, delete history from storage, display, and array
+$("#delete-button").on("click", function() {
+    localStorage.removeItem("Search History");
+    $("#search-history").empty();
+    searchHistory = [];
 });
 
 // load search history from local storage first
