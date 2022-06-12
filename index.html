@@ -17,24 +17,29 @@
     </header>
 
     <main id="content" class="row">
+        <!-- Search Section -->
         <section id="search" class="col-3 d-flex flex-column">
             <h2 class="fw-bold fs-1">Search for a City:</h2>
             <input id="search-input" type="text" placeholder="New York" class="my-2 form-control-lg"/>
             <button id="search-button" type="submit" class="my-2 p-2 btn text-light fw-semibold fs-5">
                 <i class="bi bi-search me-2"></i>Search
             </button>
+            <button id="delete-button" type="submit" class="my-2 p-2 btn text-light fw-semibold fs-5">
+                <i class="bi bi-trash me-2"></i>Delete History
+            </button>
+            <!-- Search History -->
             <div class="search-container d-flex flex-column text-light">
-                <button id="delete-button" type="submit" class="my-2 p-2 btn text-light fw-semibold fs-5">
-                    <i class="bi bi-trash me-2"></i>Delete History
-                </button>
                 <ul id="search-history" class="d-flex flex-column text-light">
                 </ul>
             </div>
         </section>
+        <!-- Main Display -->
         <section class="forecast-container col-9">
+            <!-- Current City Display -->
             <section id="current-display">
                 <div id="city-display" class="text-light p-2"></div>
             </section>
+            <!-- 5-day Forecast Display -->
             <section id="five-day-forecast" class="pt-2">
                 <h2 class="fw-bold py-2">5-Day Forecast:</h2>
                 <ul id="days" class="d-flex justify-content-between text-light p-0">

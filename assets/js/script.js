@@ -2,7 +2,6 @@
 var apiKey = "&appid=b179b0ec8a494dd3814af7d275d79d75";
 var searchHistory = [];
 var currentCity = "";
-var currentDate = "";
 
 // function to display current city weather
 var setWeatherDisplay = function(data) {
@@ -26,7 +25,7 @@ var setWeatherDisplay = function(data) {
     $("#current-city").text(currentCity);
 
     // set date display to current date
-    $("#current-date").text(currentDate);
+    $("#current-date").text(moment.unix(currentData.dt).format("(M/D/YYYY)"));
 
     // set icon for weather condition
     $("#current-condition").attr("src", "https://openweathermap.org/img/wn/" + currentData.weather[0].icon + ".png");
@@ -49,16 +48,16 @@ var setWeatherDisplay = function(data) {
     if (currentUv < 3) {
         uvIndex.addClass("text-bg-low");
     } 
-    else if (currentUv > 3 && currentUv < 6) {
+    else if (currentUv >= 3 && currentUv < 6) {
         uvIndex.addClass("text-bg-moderate");
     }
-    else if (currentUv > 6 && currentUv < 8) {
+    else if (currentUv >= 6 && currentUv < 8) {
         uvIndex.addClass("text-bg-high");
     }  
-    else if (currentUv > 8 && currentUv < 11) {
+    else if (currentUv >= 8 && currentUv < 11) {
         uvIndex.addClass("text-bg-very-high");
     }
-    else if (currentUv > 11) {
+    else if (currentUv >= 11) {
         uvIndex.addClass("text-bg-extreme");
     }
 };
@@ -126,18 +125,16 @@ var getCityLocation = function(city) {
             // request successful
             if (response.ok) {
                 response.json().then(function(data) {
-                    // set up global variables for later use
+                    // set up global variable for later use
                     currentCity = data.name;
-                    var dateData = data.dt;
-                    currentDate = moment.unix(dateData).format("(M/D/YYYY)");
+
+                    // pass city name to save history function
+                    saveHistory(data.name);
 
                     // get coordinates then pass into weather function
                     var y = data.coord.lat;
                     var x = data.coord.lon;
                     getCityWeather(y, x);
-                    
-                    // pass city name to save history function
-                    saveHistory(data.name);
                 })
             } else {
                 // if user input a city that does not exist
