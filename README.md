@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-For this week's challenge, I built a weather dashboard application that utilizes server-side APIs to retrieve weather data for cities. The application features dynamically generated HTML and CSS powered by JavaScript, jQuery, and Bootstrap. A user is able to type in a city's name in the search form, which will be used as a parameter in the request to OpenWeather One Call API. The browser will display the current weather conditions for the city and the 5-day forecast. These conditions include an icon representation of the weather, temperature, wind speed, humidity, and the UV index which will be color coded according to the UV index scale.
+For this week's challenge, I built a weather dashboard application that utilizes server-side APIs to retrieve weather data for cities. The application features dynamically generated HTML and CSS powered by JavaScript, jQuery, and Bootstrap. A user is able to type a city's name in the search form, which will be used as a parameter in the request to OpenWeather One Call API. The browser will display the current weather conditions for the city and the 5-day forecast. These conditions include an icon representation of the weather, temperature, wind speed, humidity, and the UV index which will be color coded according to the UV index scale.
 
 - Green: Low (0 to 2)
 - Yellow: Moderate (3 to 5)
