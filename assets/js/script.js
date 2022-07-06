@@ -6,10 +6,13 @@ var currentCity = "";
 // function to display current city weather
 var setWeatherDisplay = function(data) {
     var currentData = data.current;
-    // empty display of current values
-    $("#city-display").empty();
+    // empty city display of current values
+    $("#current-display").empty();
 
-    // set up display
+    // create city display dynamically and set up structure
+    $("#current-display").append(
+        "<div id='city-display' class='text-light p-2'></div>"
+    );
     $("#city-display").append(
         "<div class='d-flex align-items-center gap-2'>"+
         "<h2 id='current-city' class='fw-bold fs-1'></h2>"+
@@ -41,9 +44,6 @@ var setWeatherDisplay = function(data) {
     var uvIndex = $("#current-uv span");
     uvIndex.text(currentUv);
 
-    // remove uv index color classes
-    uvIndex.removeClass("text-bg-low text-bg-moderate text-bg-high text-bg-very-high text-bg-extreme");
-
     // set uv index color classes
     if (currentUv < 3) {
         uvIndex.addClass("text-bg-low");
@@ -64,10 +64,21 @@ var setWeatherDisplay = function(data) {
 
 // function to display current city's 5-day forecast
 var setForcastDisplay = function(data) {
-    // empty cards of current values
-    $(".day-container").empty();
-    
-    // create cards
+    // empty forecast display of current values
+    $("#five-day-forecast").empty();
+
+    // create forecast display dynamically
+    $("#five-day-forecast").append(
+        "<h2 class='fw-bold py-2'>5-Day Forecast:</h2>"+
+        "<ul id='days' class='d-flex justify-content-between text-light p-0'></ul>"
+    );
+
+    // create cards and set up card structure
+    for (var i = 0; i < 5; i++) {
+        $("#days").append(
+            "<li class='day-container card'></li>"
+        );
+    }
     $(".day-container").append(
         "<h3 class='card-title'>Day 1</h3>"+
         "<img class='src=''>"+

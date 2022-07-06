@@ -19,17 +19,18 @@ p {
 }
 
 #content {
-    margin: 10px;
+    --bs-gutter-x: 0;
 }
 
 /* Search Section */
 
 #search {
-    padding: 0;
+    padding: 1rem 1rem 0 1rem;
+    min-height: 100vh;
 }
 
 .search-container {
-    border-top: 2px solid black;
+    border-top: 2px solid white;
     padding: 10px 0;
     margin-top: 10px;
 }
@@ -49,6 +50,8 @@ p {
 #search-history {
     padding: 0;
     list-style: none;
+    margin-top: 10px;
+    gap: 20px;
 }
 
 #delete-button {
@@ -60,33 +63,27 @@ p {
 }
 
 .searched-city {
-    background: linear-gradient(#425e7c, black);
+    background: linear-gradient(#53769c, #223141);
     text-align: center;
     padding: 0.5rem;
-    margin: 10px 0;
     font-size: 1.3rem;
 }
 
 .searched-city:hover {
-    background: linear-gradient(#5b98d8, #425e7c);
+    background: linear-gradient(#5b98d8, #53769c);
 }
 
 /* Main Display */
 
 .forecast-container {
-    padding: 0 25px 10px 25px;
+    padding: 10px 25px;
 }
 
 #city-display {
-    height: 300px;
     background: linear-gradient(rgb(55, 154, 226, 0.8), rgb(9, 19, 75, 0.75));
     border: 4px solid #ffc500;
     border-radius: 10px;
     text-shadow: 1px 1px 5px rgb(0, 0, 0, 0.8);
-}
-
-#five-day-forecast {
-    height: 350px;
 }
 
 #city-display p {
@@ -132,7 +129,6 @@ img {
     border: 4px solid #ffc500;
     border-radius: 10px;
     width: 18%;
-    height: 290px;
     padding: 10px;
     text-shadow: 1px 1px 5px rgb(0, 0, 0, 0.8);
 }
@@ -150,4 +146,20 @@ img {
 .day-container p {
     margin: 0.7rem 0;
     font-size: 1.2rem;
+}
+
+@media screen and (max-width: 1200px) {
+    #search {
+        min-height: auto;
+    }
+
+    .day-container h3 {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .day-container h3, .day-container p {
+        font-size: 1rem;
+    }
 }
